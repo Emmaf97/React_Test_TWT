@@ -20,7 +20,7 @@ services:
   - type: static
     name: react-frontend
     buildCommand: "cd frontend && npm install && npm run build"
-    publishPath: frontend/dist
+    publishPath: dist
     envVars:
       - key: REACT_APP_BACKEND_URL
         value: "https://your-backend-url.onrender.com/api"
