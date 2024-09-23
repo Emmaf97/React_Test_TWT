@@ -3,6 +3,12 @@ import api from "../api";
 import Note from "../components/Note";
 import "../styles/Home.css";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
+fetch(`${apiUrl}/some-endpoint/`)
+  .then(response => response.json())
+  .then(data => console.log(data));
+
 function Home() {
   const [notes, setNotes] = useState([]);
   const [content, setContent] = useState("");
