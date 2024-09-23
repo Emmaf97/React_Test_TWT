@@ -5,10 +5,6 @@ import "../styles/Home.css";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-fetch(`${apiUrl}/some-endpoint/`)
-  .then(response => response.json())
-  .then(data => console.log(data));
-
 function Home() {
   const [notes, setNotes] = useState([]);
   const [content, setContent] = useState("");
@@ -20,7 +16,7 @@ function Home() {
 
   const getNotes = () => {
     api
-      .get("/api/notes/")
+      .get(`/${apiUrl}/notes/`)
       .then((res) => res.data)
       .then((data) => {
         setNotes(data);
@@ -31,7 +27,7 @@ function Home() {
 
   const deleteNote = (id) => {
     api
-        .delete(`/api/notes/delete/${id}/`)
+        .delete(`/${apiUrl}/notes/delete/${id}/`)
         .then((res) => {
             if (res.status === 204) alert("Note deleted!");
             else alert("Failed to delete note.");
@@ -43,7 +39,7 @@ function Home() {
   const creatNote = (e) => {
     e.preventDefault();
     api
-      .post("/api/notes/", { content, title })
+      .post(`/${apiUrl}/notes/`, { content, title })
       .then((res) => {
         if (res.status === 201) alert("Note Created!");
         else alert("Failed to create note");
