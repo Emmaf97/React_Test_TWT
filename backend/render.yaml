@@ -28,7 +28,7 @@ services:
     healthCheckSuccessThreshold: 2
     healthCheckFailureThreshold: 3
     networkVisibility: public  # Can be 'public' or 'private'
-    context: "/backend"  # Optional context path for your backend
+    context: "/"  # Optional context path for your backend
 
   - name: react-frontend
     type: static
