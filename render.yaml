@@ -1,7 +1,9 @@
 services:
-  - type: web
-    name: django-backend
+  - name: django-backend
+    type: web
     env: python
+    plan: free
+    port: 8000  # Default port for Django
     buildCommand: "pip install -r backend/requirements.txt"
     startCommand: "gunicorn backend.wsgi:application"
     envVars:
@@ -16,11 +18,24 @@ services:
         value: "your_secret_key"  # Set in the dashboard
       - key: DJANGO_ALLOWED_HOSTS
         value: "your-backend-url.onrender.com"
+      - key: DB_NAME
+        value: "your_db_name"
+      - key: DB_PORT
+        value: "your_db_port"
+    healthCheckPath: "/api/health/"
+    healthCheckInterval: 5
+    healthCheckTimeout: 2
+    healthCheckSuccessThreshold: 2
+    healthCheckFailureThreshold: 3
+    networkVisibility: public  # Can be 'public' or 'private'
+    context: "/backend"  # Optional context path for your backend
 
-  - type: static
-    name: react-frontend
+  - name: react-frontend
+    type: static
+    env: static
+    port: 3000  # Default port for React apps
     buildCommand: "cd frontend && npm install && npm run build"
     publishPath: dist
     envVars:
-      - key: REACT_APP_BACKEND_URL
-        value: "https://your-backend-url.onrender.com/api"
+      - key: VITE_API_URL
+        value: "your_db_url"  # Update to your backend URL
