@@ -5,13 +5,15 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
+    outDir: 'dist', // Ensure this is set
     rollupOptions: {
-      output: {
-        dir: 'dist',
-      },
-    },
+      input: {
+        main: 'src/main.jsx', // Adjust this to point to your main entry file
+        // Other entry points if necessary
+      }
+    }
   },
   server: {
-    historyApiFallback: true,  // This ensures that React Router works correctly
+    historyApiFallback: true, // For React Router
   }
-})
+});
