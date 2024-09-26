@@ -1,5 +1,5 @@
 services:
-  - name: django-backend
+  - name: backend
     type: web
     env: python
     plan: free
@@ -30,7 +30,7 @@ services:
     networkVisibility: public  # Can be 'public' or 'private'
     context: "/"  # Optional context path for your backend
 
-  - name: react-frontend
+  - name: frontend
     type: static_site
     env: static
     port: 3000  # Default port for React apps
