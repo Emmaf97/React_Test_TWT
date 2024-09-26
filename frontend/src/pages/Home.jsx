@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api";
-import Note from "./components/Note";
-import "./styles/Home.css";
+import Note from "../components/Note";
+import "../styles/Home.css";
 
 function Home() {
   const [notes, setNotes] = useState([]);
@@ -12,53 +12,50 @@ function Home() {
     getNotes();
   }, []);
 
-  const getNotes = async () => {
-    try {
-      const response = await api.get("/api/notes/");
-      setNotes(response.data);
-      console.log(response.data);
-    } catch (error) {
-      alert("Error fetching notes: " + error.message);
-    }
+  const getNotes = () => {
+    api
+      .get("/api/notes/")
+      .then((res) => res.data)
+      .then((data) => {
+        setNotes(data);
+        console.log(data);
+      })
+      .catch((err) => alert(err));
   };
 
-  const deleteNote = async (id) => {
-    try {
-      const res = await api.delete(`/api/notes/delete/${id}/`);
-      if (res.status === 204) {
-        alert("Note deleted!");
-        getNotes(); // Refresh the notes after deletion
-      } else {
-        alert("Failed to delete note.");
-      }
-    } catch (error) {
-      alert("Error deleting note: " + error.message);
-    }
-  };
+  const deleteNote = (id) => {
+    api
+        .delete(`/api/notes/delete/${id}/`)
+        .then((res) => {
+            if (res.status === 204) alert("Note deleted!");
+            else alert("Failed to delete note.");
+            getNotes();
+        })
+        .catch((error) => alert(error));
+};
 
-  const createNote = async (e) => {
+  const creatNote = (e) => {
     e.preventDefault();
-    try {
-      const res = await api.post("/api/notes/", { content, title });
-      if (res.status === 201) {
-        alert("Note Created!");
-        getNotes(); // Refresh the notes after creation
-      } else {
-        alert("Failed to create note");
-      }
-    } catch (error) {
-      alert("Error creating note: " + error.message);
-    }
+    api
+      .post("/api/notes/", { content, title })
+      .then((res) => {
+        if (res.status === 201) alert("Note Created!");
+        else alert("Failed to create note");
+        getNotes();
+      })
+      .catch((error) => alert(error));
   };
 
   return (
     <div>
-      <h2>Notes</h2>
-      {notes.map((note) => (
-        <Note note={note} onDelete={deleteNote} key={note.id} />
-      ))}
+      <div>
+        <h2>Notes</h2>
+        {notes.map((note) => (
+          <Note note={note} onDelete={deleteNote} key={note.id} />
+        ))}
+      </div>
       <h2>Create a Note</h2>
-      <form onSubmit={createNote}>
+      <form onSubmit={creatNote}>
         <label htmlFor="title">Title</label>
         <br />
         <input
