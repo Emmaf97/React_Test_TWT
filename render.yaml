@@ -35,7 +35,7 @@ services:
     env: static
     port: 3000  # Default port for React apps
     buildCommand: "cd frontend && npm install && npm run build"
-    publishPath: dist
+    publishPath: frontend/dist
     envVars:
       - key: VITE_API_URL
         value: "your_db_url"  # Update to your backend URL
