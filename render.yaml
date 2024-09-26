@@ -31,7 +31,7 @@ services:
     context: "/"  # Optional context path for your backend
 
   - name: react-frontend
-    type: static
+    type: static_site
     env: static
     port: 3000  # Default port for React apps
     buildCommand: "cd frontend && npm install && npm run build"
