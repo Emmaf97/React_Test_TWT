@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        dir: 'dist',
+        dir: 'frontend/dist',
       },
     },
   },
