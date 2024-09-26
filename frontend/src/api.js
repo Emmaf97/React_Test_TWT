@@ -1,7 +1,7 @@
 import axios from "axios"
 import { ACCESS_TOKEN } from "./constants"
 
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL || "https://react-test-twt-1.onrender.com";
 
 const api = axios.create({
     baseURL: apiUrl
