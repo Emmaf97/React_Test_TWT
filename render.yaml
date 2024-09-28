@@ -1,10 +1,20 @@
 services:
+  - name: frontend
+    type: static_site
+    env: static
+    port: 3000  # Default port for React apps
+    buildCommand: "cd frontend && npm install && npm run build && npm run copy-static-files"
+    publishDir: "frontend/dist"
+    envVars:
+      - key: VITE_API_URL
+        value: "your_db_url"  # Update to your backend URL
+        
   - name: backend
     type: web
     env: python
     plan: free
     port: 8000  # Default port for Django
-    buildCommand: "cd backend && pip install -r backend/requirements.txt && cd backend && pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic"
+    buildCommand: "cd backend && pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic"
     startCommand: "cd backend && gunicorn backend.wsgi:application"
     envVars:
       - key: DB_HOST
@@ -29,13 +39,3 @@ services:
     healthCheckFailureThreshold: 3
     networkVisibility: public  # Can be 'public' or 'private'
     context: "/"  # Optional context path for your backend
-
-  - name: frontend
-    type: static_site
-    env: static
-    port: 3000  # Default port for React apps
-    buildCommand: "cd frontend && npm install && npm run build && npm run copy-static-files"
-    publishDir: "frontend/dist"
-    envVars:
-      - key: VITE_API_URL
-        value: "your_db_url"  # Update to your backend URL
