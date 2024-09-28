@@ -8,7 +8,9 @@ const __dirname = path.dirname(__filename);
 
 // Set the source and destination directories
 const sourceDir = path.join(__dirname, '../frontend/dist'); // Adjust this path as needed
+console.log('Source Directory:', sourceDir);
 const destDir = path.join(__dirname, '../backend/staticfiles/static'); // Adjust this path as needed
+console.log('Destination Directory:', destDir);
 
 // Copy static files from source to destination
 fs.copy(sourceDir, destDir)
