@@ -12,10 +12,10 @@ def root_view(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', root_view),
-    path('', TemplateView.as_view(template_name="index.html")),
     path("api/user/register/", CreateUserView.as_view(), name="register"),
     path("api/token/", TokenObtainPairView.as_view(), name="get_token"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("api/auth/", include("rest_framework.urls")),
     path("api/", include("api.urls")),
+    path('', TemplateView.as_view(template_name="index.html")),
 ]
