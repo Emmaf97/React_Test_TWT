@@ -4,8 +4,8 @@ services:
     env: python
     plan: free
     port: 8000  # Default port for Django
-    buildCommand: "pip install -r backend/requirements.txt"
-    startCommand: "gunicorn backend.wsgi:application"
+    buildCommand: "cd backend && pip install -r backend/requirements.txt && cd backend && pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic"
+    startCommand: "cd backend && gunicorn backend.wsgi:application"
     envVars:
       - key: DB_HOST
         fromDatabase:
@@ -34,7 +34,7 @@ services:
     type: static_site
     env: static
     port: 3000  # Default port for React apps
-    buildCommand: "cd frontend && npm install && npm run build"
+    buildCommand: "cd frontend && npm install && npm run build && npm run copy-static-files"
     publishDir: "frontend/dist"
     envVars:
       - key: VITE_API_URL
