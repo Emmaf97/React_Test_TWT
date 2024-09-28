@@ -1,5 +1,6 @@
 
 from django.contrib import admin
+from django.views.generic import TemplateView
 from django.http import JsonResponse
 from django.urls import path, include
 from api.views import CreateUserView
@@ -10,7 +11,8 @@ def root_view(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', root_view),
+    # path('', root_view),
+    path('', TemplateView.as_view(template_name="index.html")),
     path("api/user/register/", CreateUserView.as_view(), name="register"),
     path("api/token/", TokenObtainPairView.as_view(), name="get_token"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="refresh"),
