@@ -2,7 +2,7 @@ services:
   - name: frontend
     type: static_site
     env: static
-    port: 3000  # Default port for React apps
+    # port: 3000  # Default port for React apps
     buildCommand: "cd frontend && npm install && npm run build && npm run copy-static-files"
     publishDir: "frontend/dist"
     envVars:
