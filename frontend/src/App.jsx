@@ -5,6 +5,8 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Layout from "./components/Layout";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -22,6 +24,7 @@ function RegisterAndLogout() {
 function App() {
   return (
     <BrowserRouter>
+      <Layout>
       <Routes>
         <Route
           path="/"
@@ -35,7 +38,8 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
-      </Routes>
+        </Routes>
+        </Layout>
     </BrowserRouter>
   )
 }
