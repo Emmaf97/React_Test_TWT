@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import api from "../api";
+import api from "../api.js";
 import Note from "../components/Note";
 import "../styles/Home.css";
 import "../components/NavBar";
