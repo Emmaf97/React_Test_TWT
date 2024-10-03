@@ -29,7 +29,7 @@ SECRET_KEY=os.getenv('SECRET_KEY', 'TESTKEY')
 # SECRET_KEY = 'django-insecure-$fdk4q2w1b0%$vyi^s#((ix1g6g@z)k=sa7g77qei#q)^xh@w7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', os.environ.get('RENDER_HOSTNAME', '')]
 ALLOWED_HOSTS = ["*"] # allows all hosts 
@@ -145,9 +145,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend', 'dist'),  # Add React static files here
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'frontend', 'dist'),  # Add React static files here
+# ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
