@@ -15,7 +15,7 @@ services:
     plan: free
     port: 8000  # Default port for Django
     buildCommand: "cd backend && pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic"
-    startCommand: "cd backend && gunicorn backend.wsgi:application"
+    startCommand: "cd backend && gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT"
     envVars:
       - key: DB_HOST
         fromDatabase:
