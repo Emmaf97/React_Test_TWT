@@ -154,7 +154,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    'https://react-test-twt-1.onrender.com',  # Allow your React frontend
+    'https://336339dc-2112-40a6-bc2a-f741dc901c7b.e1-eu-north-azure.choreoapps.dev',  # Allow your React frontend
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
