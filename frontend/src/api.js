@@ -2,11 +2,11 @@ import axios from "axios"
 import { ACCESS_TOKEN } from "./constants.js"
 
 
-const apiUrl = import.meta.env.VITE_API_URL || "https://react-test-twt.onrender.com";
+const apiUrl = '/choreo-apis/react-application-test-de/backend/v1'
 
 const api = axios.create({
-    baseURL: apiUrl
-})
+    baseURL: import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL : apiUrl,
+  });
 //look in local storage and check for access token and add to header if not created then nothing is done.
 
 api.interceptors.request.use(
