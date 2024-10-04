@@ -5,7 +5,7 @@ import { ACCESS_TOKEN } from "./constants.js"
 const apiUrl = "/choreo-apis/react-application-test-de/backend/v1"
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL : apiUrl,
+    baseURL: apiUrl
   });
 //look in local storage and check for access token and add to header if not created then nothing is done.
 
