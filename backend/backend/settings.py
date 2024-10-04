@@ -149,6 +149,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+CORS_ALLOWED_ORIGINS = [
+    'https://336339dc-2112-40a6-bc2a-f741dc901c7b.e1-eu-north-azure.choreoapps.dev',  # Replace with actual frontend URL
+]
+
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
